@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   File.init({
-    name: {
+    fileName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
