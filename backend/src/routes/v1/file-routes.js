@@ -9,4 +9,7 @@ router.post('/',
       UploadMiddlewares.uploadFiles.single('file'),
       FileController.createFile);
 
+router.get('/',
+      FileController.getFiles);
+
 module.exports = router;

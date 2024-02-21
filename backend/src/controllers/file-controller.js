@@ -21,6 +21,24 @@ async function createFile(req, res) {
     }
 }
 
+async function getFiles(req, res) {
+    try {
+        const files = await FileService.getFiles({
+            userId: req.body.userId
+        });
+        SucessResponse.data = files;
+        return res
+                .status(StatusCodes.OK)
+                .json(SucessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse);
+    }
+}
+
 module.exports = {
-    createFile
+    createFile,
+    getFiles
 }
