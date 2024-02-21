@@ -6,7 +6,7 @@ async function createFile(req, res) {
     try {
         const file = await FileService.createFile({
             fileName: req.body.fileName,
-            path: req.body.path,
+            path: req.file.filename,
             userId: req.body.userId
         });
         SucessResponse.data = file;
