@@ -2,6 +2,10 @@
 const {
   Model
 } = require('sequelize');
+
+const bcrypt = require('bcrypt');
+const { ServerConfig } = require('../config');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -15,23 +19,29 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     email: {
-      email: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING,
       unique: true,
+      allowNull: false,
       validate: {
-        isEmail: true, 
+        isEmail: true
       }
     },
     password: {
-      DataTypes: DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [6,12],
       }
-    }
+    },
   }, {
     sequelize,
     modelName: 'User',
   });
+
+  User.beforeCreate(function encrypt(user) {
+    const encryptedPassword = bcrypt.hashSync(user.password, +ServerConfig.SALT);
+    user.password = encryptedPassword;
+  });
+
   return User;
 };
