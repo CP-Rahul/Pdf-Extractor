@@ -1,6 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const { FileRepository } = require('../repository');
 const AppError = require('../utils/errors/app-error');
+const { Merger } = require('../utils/common');
 
 const fileRepository = new FileRepository();
 
@@ -25,7 +26,15 @@ async function getFiles(data) {
     }
 }
 
+async function mergeFile(data) {
+    try {
+        await Merger.mergePdf(data.pdf, data.pages, data.fileName);
+    } catch (error) {
+        throw new AppError('Something went wrong while merging', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
 module.exports = {
     createFile,
-    getFiles
+    getFiles,
+    mergeFile
 }

@@ -38,7 +38,29 @@ async function getFiles(req, res) {
     }
 }
 
+async function mergeFile(req, res) {
+    try {
+        const file = await FileService.mergeFile({
+            pdf: req.body.pdf,
+            pages: req.body.pages,
+            fileName: req.body.fileName,
+            userId: req.body.userId,
+        })
+    SucessResponse.data = file;
+    return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse);
+    }
+}
+
+
 module.exports = {
     createFile,
-    getFiles
+    getFiles,
+    mergeFile
 }

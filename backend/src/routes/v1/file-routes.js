@@ -12,4 +12,7 @@ router.post('/',
 router.get('/',
       FileController.getFiles);
 
+router.post('/merge',
+      FileController.mergeFile);
+
 module.exports = router;
