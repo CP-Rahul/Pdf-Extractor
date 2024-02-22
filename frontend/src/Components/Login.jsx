@@ -2,18 +2,20 @@ import axios from "axios";
 import { useState } from "react"
 import { backendUrl } from "../utils/constants";
 import { errorHandler } from "../utils/error-utility";
+import { saveToken } from "../utils/token";
 
-export default function Register() {
+export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    async function registerHandler(e) {
+    async function loginHandler(e) {
         e.preventDefault();
         try {
-            await axios.post(`${backendUrl}/user/signup`, {
+            const token = await axios.post(`${backendUrl}/user/signin`, {
                 email: email,
                 password: password
             });
+            saveToken(token.data.data);
         } catch (error) {
             errorHandler(error)
         }
@@ -21,7 +23,7 @@ export default function Register() {
     return(
         <div className="flex justify-center items-center h-screen">
         <form
-          onSubmit={registerHandler}
+          onSubmit={loginHandler}
           className="flex flex-col w-full max-w-sm gap-4 md:max-w-md"
         >
           <input
@@ -46,7 +48,7 @@ export default function Register() {
             className="border p-2 bg-blue-500 text-white rounded-lg"
             type="submit"
           >
-            Register
+            Login
           </button>
         </form>
       </div>
