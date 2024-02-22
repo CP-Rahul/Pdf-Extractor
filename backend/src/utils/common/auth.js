@@ -20,7 +20,17 @@ function generateToken(data)  {
     }
 }
 
+
+function verifyToken(token) {
+    try {
+        return jwt.verify(token, ServerConfig.JWTSECRET);
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     comparePassword,
-    generateToken
+    generateToken,
+    verifyToken
 }

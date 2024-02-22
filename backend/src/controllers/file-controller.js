@@ -7,7 +7,7 @@ async function createFile(req, res) {
         const file = await FileService.createFile({
             fileName: req.body.fileName,
             path: req.file.filename,
-            userId: req.body.userId
+            userId: req.user
         });
         SucessResponse.data = file;
         return res
@@ -24,7 +24,7 @@ async function createFile(req, res) {
 async function getFiles(req, res) {
     try {
         const files = await FileService.getFiles({
-            userId: req.body.userId
+            userId: req.user
         });
         SucessResponse.data = files;
         return res
@@ -44,12 +44,12 @@ async function mergeFile(req, res) {
             pdf: req.body.pdf,
             pages: req.body.pages,
             fileName: req.body.fileName,
-            userId: req.body.userId,
+            userId: req.user,
         })
     SucessResponse.data = file;
     return res
             .status(StatusCodes.OK)
-            .json(SuccessResponse);
+            .json(SucessResponse);
     } catch (error) {
         ErrorResponse.error = error;
         return res
