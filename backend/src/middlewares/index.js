@@ -1,3 +1,4 @@
 module.exports = {
-    UploadMiddlewares: require('./upload-middlewares')
+    UploadMiddlewares: require('./upload-middlewares'),
+    UserMiddlewares: require('./user-middlewares')
 }
