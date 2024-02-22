@@ -17,7 +17,7 @@ export default function Login() {
             });
             saveToken(token.data.data);
         } catch (error) {
-            errorHandler(error)
+            errorHandler(error);
         }
     }
     return(

@@ -5,9 +5,7 @@ import Register from "./Components/Register";
 export default function App() {
   return(
     <div>
-      {/* <PdfUploadForm /> */}
-      {/* <Register /> */}
-      <Login />
+     hii
     </div>
   )
 }

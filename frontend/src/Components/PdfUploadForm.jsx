@@ -5,12 +5,11 @@ import { errorHandler } from "../utils/error-utility";
 
 function PdfUploadForm() {
   const [path, setPath] = useState(null);
-  const [userId, setUserId] = useState("");
   const [fileName, setFileName] = useState("");
 
   async function uploadHandler(e) {
     e.preventDefault();
-    if(!userId || !path || !fileName) {
+    if(!path || !fileName) {
       alert("Please fill all fields");
     }
     if(path.type != 'application/pdf') {
@@ -18,12 +17,13 @@ function PdfUploadForm() {
     }
     const formData = new FormData();
     formData.append("file", path);
-    formData.append("userId", userId);
     formData.append("fileName", fileName);
 
+    const token = localStorage.getItem('jwtToken');
+    
     try {
       await axios.post(`${backendUrl}file`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data" ,"x-access-token": `${token}`},
       });
     } catch (error) {
       errorHandler(error);
@@ -36,15 +36,6 @@ function PdfUploadForm() {
         onSubmit={uploadHandler}
         className="flex flex-col w-full max-w-sm gap-4 md:max-w-md"
       >
-        <input
-          className="outline-none w-full p-4 border border-slate-400"
-          type="text"
-          placeholder="User Id"
-          name="userID"
-          required
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-        />
         <input
           className="outline-none w-full p-4 border border-slate-400"
           type="text"
