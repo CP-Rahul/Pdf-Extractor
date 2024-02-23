@@ -9,21 +9,24 @@ function PdfUploadForm() {
 
   async function uploadHandler(e) {
     e.preventDefault();
-    if(!path || !fileName) {
+    if (!path || !fileName) {
       alert("Please fill all fields");
     }
-    if(path.type != 'application/pdf') {
+    if (path.type != "application/pdf") {
       alert("You can only upload pdf");
     }
     const formData = new FormData();
     formData.append("file", path);
     formData.append("fileName", fileName);
 
-    const token = localStorage.getItem('jwtToken');
-    
+    const token = localStorage.getItem("jwtToken");
+
     try {
       await axios.post(`${backendUrl}file`, formData, {
-        headers: { "Content-Type": "multipart/form-data" ,"x-access-token": `${token}`},
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-access-token": `${token}`,
+        },
       });
     } catch (error) {
       errorHandler(error);
