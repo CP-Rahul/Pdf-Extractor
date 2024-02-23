@@ -7,6 +7,7 @@ import Login from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
 import PdfUploadForm from './Components/PdfUploadForm.jsx';
 import PdfList from './Components/PdfList.jsx';
+import PdfViewer from './Components/PdfViewer.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/files",
     element: <PdfList />
+  },
+  {
+    path: "/files/:id",
+    element: <PdfViewer />
   }
 ]);
 
