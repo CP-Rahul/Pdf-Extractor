@@ -29,7 +29,10 @@ async function getFiles(data) {
 async function mergeFile(data) {
     try {
         await Merger.mergePdf(data.pdf, data.pages, data.fileName);
+        const file = await fileRepository.create({fileName: data.fileName, path: `${data.fileName}.pdf`, userId: data.userId});
+        return file;
     } catch (error) {
+        console.log(error)
         throw new AppError('Something went wrong while merging', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }

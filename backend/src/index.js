@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
-app.use('/public/uploads', express.static('public/uploads'));
+app.use('/public/temp', express.static('public/temp'));
 
 app.use('/api', apiRoutes);
 

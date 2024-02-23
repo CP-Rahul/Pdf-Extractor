@@ -51,6 +51,7 @@ async function mergeFile(req, res) {
             .status(StatusCodes.OK)
             .json(SucessResponse);
     } catch (error) {
+        console.log(error)
         ErrorResponse.error = error;
         return res
                 .status(error.statusCode)
