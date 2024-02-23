@@ -6,6 +6,7 @@ import './index.css'
 import Login from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
 import PdfUploadForm from './Components/PdfUploadForm.jsx';
+import PdfList from './Components/PdfList.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,12 +18,16 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path: "/",
+    path: "/register",
     element: <Register />
   },
   {
     path: "/upload",
     element: <PdfUploadForm />
+  },
+  {
+    path: "/files",
+    element: <PdfList />
   }
 ]);
 
