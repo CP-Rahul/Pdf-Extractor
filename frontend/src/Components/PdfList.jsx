@@ -2,6 +2,7 @@ import axios from "axios";
 import { backendUrl } from "../utils/constants";
 import { useState, useEffect } from "react";
 import { errorHandler } from "../utils/error-utility";
+import { Link } from "react-router-dom";
 
 export default function PdfList() {
   const [files, setFiles] = useState([]);
@@ -30,8 +31,10 @@ export default function PdfList() {
             key={pdf.id}
             className="border rounded-lg p-2 hover:bg-gray-50 transition duration-300 mb-4 flex justify-between"
           >
+            <Link to={`/files/${pdf.path}`}>
             <div className="text-xl font-semibold mb-2 p-2">{pdf.fileName}</div>
             <div className="text-sm text-gray-600 p-2">{pdf.updatedAt}</div>
+            </Link>
           </div>
         ))}
       </div>

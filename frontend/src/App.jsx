@@ -5,7 +5,7 @@ import Register from "./Components/Register";
 export default function App() {
   return(
     <div>
-     hii
+     <Register />
     </div>
   )
 }

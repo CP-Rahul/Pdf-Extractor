@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { backendUrl } from "../utils/constants";
 import { errorHandler } from "../utils/error-utility";
+import { useNavigate } from "react-router-dom";
 
 function PdfUploadForm() {
   const [path, setPath] = useState(null);
   const [fileName, setFileName] = useState("");
+  const navigate = useNavigate();
 
   async function uploadHandler(e) {
     e.preventDefault();
@@ -28,6 +30,7 @@ function PdfUploadForm() {
           "x-access-token": `${token}`,
         },
       });
+      navigate("/home");
     } catch (error) {
       errorHandler(error);
     }

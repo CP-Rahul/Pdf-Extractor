@@ -92,7 +92,6 @@ export default function PdfViewer() {
             d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
           />
         </svg>
-        <ExtractForm pdf={params.id} pages={selectedPages} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -114,6 +113,7 @@ export default function PdfViewer() {
           />
         </svg>
       </div>
+      <ExtractForm pdf={params.id} pages={selectedPages} />
     </div>
   );
 }

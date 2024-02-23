@@ -3,10 +3,12 @@ import { useState } from "react"
 import { backendUrl } from "../utils/constants";
 import { errorHandler } from "../utils/error-utility";
 import { saveToken } from "../utils/token";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function loginHandler(e) {
         e.preventDefault();
@@ -16,6 +18,7 @@ export default function Login() {
                 password: password
             });
             saveToken(token.data.data);
+            navigate('/home')
         } catch (error) {
             errorHandler(error);
         }
@@ -50,6 +53,11 @@ export default function Login() {
           >
             Login
           </button>
+          <div className="text-center">
+          <Link to="/register">
+            <p>Don't have an account?</p>
+          </Link>
+        </div>
         </form>
       </div>
     )

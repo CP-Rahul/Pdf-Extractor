@@ -8,6 +8,7 @@ import Register from './Components/Register.jsx';
 import PdfUploadForm from './Components/PdfUploadForm.jsx';
 import PdfList from './Components/PdfList.jsx';
 import PdfViewer from './Components/PdfViewer.jsx';
+import Home from './Components/Home.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
   {
     path: "/files/:id",
     element: <PdfViewer />
-  }
+  },
+  {
+    path: "/home",
+    element: <Home />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
